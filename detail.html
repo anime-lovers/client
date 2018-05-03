@@ -1,10 +1,144 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Detail</title>
-  </head>
-  <body>
 
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Detail</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1 id="title"></h1>
+    </div>
+    <div class="panel-body">
+      <div class="row modal-body well">
+        <div class="col-xs-6 col-lg-4">
+          <img src="" id="thumbnail-movie" class="img-thumbnail img-responsive" alt="">
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-8">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tr>
+                <th>Original Title</th>
+                <td class="original_title"></td>
+              </tr>
+              <tr>
+                <th>Tagline</th>
+                <td class="tagline"></td>
+              </tr>
+              <tr>
+                <th>Release Date</th>
+                <td class="release"></td>
+              </tr>
+              <tr>
+                <th>Genre</th>
+                <td class="genre"></td>
+              </tr>
+              <tr>
+                <th>Director</th>
+                <td class="director"></td>
+              </tr>
+              <tr>
+                <th>Content Rating</th>
+                <td class="content_rating"></td>
+              </tr>
+              <tr>
+                <th>Duration</th>
+                <td>
+                  <span class="duration"></span> Menit</td>
+              </tr>
+              <tr>
+                <th>Score</th>
+                <td class="score"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="synopsis well">
+          <h2>Overview</h2>
+          <p id="sinopsis"></p>
+        </div>
+        <div class="trailer well">
+          <h2>Trailer</h2>
+          <iframe width="854" height="480" src="" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div class="stars well">
+          <h2>Stars</h2>
+          <ol class="star">
+          </ol>
+        </div>
+        <div class="casts well">
+          <h2>Cast</h1>
+            <div class="cast_detail">
+              <ol class="cast"></ol>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    // const title_anime = 
+    // axios.get(`https://api.themoviedb.org/3/search/movie?api_key=46a6751a46d3f387669deeac233870aa&query=${title_anime}`)
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=46a6751a46d3f387669deeac233870aa&query=death%20note`)
+      .then(function (response) {
+        console.log('response :', response);
+        let idMovie = response.data.results[0].id
+        axios.get(`https://api.themoviedb.org/3/movie/${idMovie}?api_key=46a6751a46d3f387669deeac233870aa&append_to_response=videos`)
+          .then(function (response) {
+            console.log('response.data :', response.data);
+            $('#title').text(`${response.data.title}`)
+            $('.original_title').text(`${response.data.original_title}`)
+            $('.tagline').text(`${response.data.tagline}`)
+            $('.release').text(`${response.data.release_date}`)
+            $('#sinopsis').text(response.data.overview)
+            $("#thumbnail-movie").attr("src", `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${response.data.backdrop_path}`)
+            $("#thumbnail-movie").attr("alt", `${response.data.title}`)
+            $("iframe").attr("src", `https://www.youtube.com/embed/${response.data.videos.results[0].key}`)
+            response.data.genres.forEach(genre => {
+              let animeGenre = $("<span></span>").text(`${genre.name} - `);
+              $('.genre').append(animeGenre)
+            })
+            return response.data
+          })
+          .then(response => {
+            axios.get(`http://www.theimdbapi.org/api/movie?movie_id=${response.imdb_id}`)
+              .then(function (res) {
+                $('.score').text(`${res.data.rating}`)
+                $('.director').text(`${res.data.director}`)
+                $('.content_rating').text(`${res.data.content_rating}`)
+                $('.duration').text(`${res.data.length}`)
+                let casts = res.data.cast
+                casts.forEach(cast => {
+                  let nameCast = $(`<li></li>`).text(`${cast.name}`)
+                  $('.cast').append(nameCast)
+                })
+                let stars = res.data.stars
+                stars.forEach(star => {
+                  let starName = $('<li></li>').text(`${star}`)
+                  $('.star').append(starName)
+                })
+              })
+          })
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  </script>
+</body>
+
 </html>
