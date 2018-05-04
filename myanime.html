@@ -9,24 +9,50 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
   <style>
-		.navbar-brand {
-			color: white !important;
-		}
-		.nav-item .nav-link a {
-			color: white !important;
-		}
+    .container {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+    }
+
+    .container .content {
+      align-self: center;
+    }
+
+    .container .title {
+      padding-bottom: 20px;
+      font-family: 'Skranji', cursive;
+    }
+
+    .navbar-brand {
+      color: white !important;
+    }
+
+    .nav-item .nav-link a {
+      color: white !important;
+    }
   </style>
 </head>
+
 <body>
   <header>
-		<nav class="navbar navbar-light bg-dark">
-	    <div class="navbar-brand">Anime Qu</div>
-			<div class="nav-item form-inline">
-				<div class="nav-link"><a href="home.html">Search Anime</a></div>
-				<div class="nav-link" onclick="signout()"><a href="#">Sign Out</a></div>
-			</div>
-	  </nav>
-	</header>
+    <nav class="navbar navbar-light bg-dark">
+      <div class="navbar-brand">Anime Qu</div>
+      <div class="nav-item form-inline">
+        <div class="nav-link"><a href="home.html">Search Anime</a></div>
+        <div class="nav-link" onclick="signout()"><a href="#">Sign Out</a></div>
+      </div>
+    </nav>
+  </header>
+  <section>
+    <div class="container">
+      <h3>My Anime List</h3>
+      <div id="box-list-anime">
+        <div id="list-anime">
+        </div>
+      </div>
+    </div>
+  </section>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
@@ -34,15 +60,21 @@
   <script src="lib/login.js" charset="utf-8"></script>
   <script src="lib/signout.js" charset="utf-8"></script>
   <script>
-    axios.post('xxx', {}, {
-      headers: {token: localStorage.getItem('token')}
-    })
-      .then(response => {
-
+    axios.get(`https://localhost:3000/animelist/favorites`)
+      .then(function(response) {
+        console.log(response)
+        // let li = document.createElement('div')
+        // let link = document.createElement('a')
+        // let liValue = document.createTextNode(response.data.title)
+        // link.setAttribute('href', '#')
+        // link.setAttribute('class', 'title-link')
+        // li.setAttribute('class', 'list-group-item')
+        // link.setAttribute('onclick', `detail('${response.data.title}')`)
+        // li.appendChild(link)
+        // link.appendChild(liValue)
+        // ul.appendChild(li)
       })
-      .catch(err => {
-        console.log(err)
-      })
+      .catch(function(error) {})
   </script>
 </body>
 
