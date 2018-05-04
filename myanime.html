@@ -9,27 +9,24 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
   <style>
-    .container {
-      display: flex;
-      height: 100vh;
-      justify-content: center;
-    }
-
-    .container .content {
-      align-self: center;
-    }
-
-    .container .title {
-      padding-bottom: 20px;
-      font-family: 'Skranji', cursive;
-    }
-
     .navbar-brand {
       color: white !important;
     }
 
     .nav-item .nav-link a {
       color: white !important;
+    }
+
+    .container {
+      padding-top: 5px;
+    }
+
+    #box-list-anime {
+      padding-top: 5px;
+    }
+
+    h3 {
+      font-family: 'Skranji', cursive;
     }
   </style>
 </head>
@@ -59,23 +56,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <script src="lib/login.js" charset="utf-8"></script>
   <script src="lib/signout.js" charset="utf-8"></script>
-  <script>
-    axios.get(`https://localhost:3000/animelist/favorites`)
-      .then(function(response) {
-        console.log(response)
-        // let li = document.createElement('div')
-        // let link = document.createElement('a')
-        // let liValue = document.createTextNode(response.data.title)
-        // link.setAttribute('href', '#')
-        // link.setAttribute('class', 'title-link')
-        // li.setAttribute('class', 'list-group-item')
-        // link.setAttribute('onclick', `detail('${response.data.title}')`)
-        // li.appendChild(link)
-        // link.appendChild(liValue)
-        // ul.appendChild(li)
-      })
-      .catch(function(error) {})
-  </script>
+  <script src="lib/myanime.js" charset="utf-8"></script>
 </body>
 
 </html>
