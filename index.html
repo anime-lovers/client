@@ -9,18 +9,18 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
   <style media="screen">
-  .container {
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-  }
-  .container .content {
-    align-self: center;
-  }
-  .container .title {
-    padding-bottom: 20px;
-    font-family: 'Skranji', cursive;
-  }
+    .container {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+    }
+    .container .content {
+      align-self: center;
+    }
+    .container .title {
+      padding-bottom: 20px;
+      font-family: 'Skranji', cursive;
+    }
   </style>
 </head>
 
@@ -47,60 +47,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <script src="lib/loginhome.js" charset="utf-8"></script>
   <script src="lib/index.js" charset="utf-8"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script>
-  // let status = localStorage.getItem('status')
-  //
-  // if(status==='connected'){
-  //   location.replace('./') //ke halaman search
-  // }
-</script>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '221341981973041',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v3.0'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-   function checkLoginState() {
-     FB.getLoginStatus(function(response) {
-       if(response.status === 'connected'){
-         FB.api('/me',{fields: ['name','email']},function(response){
-           axios.post('http://localhost:3000', {
-              name: response.name,
-              email: response.email
-            })
-            .then(function (response) {
-              console.log(response)
-              localStorage.setItem('status','connected');
-              localStorage.setItem('token',response.data.data);
-              // location.reload()
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-         })
-       }
-     });
-   }
-
-
-
-</script>
-  </body>
->>>>>>> 2c821a6ee30d41e8549fb3ace6c5c340d3887885
-
 
 </html>
