@@ -4,12 +4,12 @@
 <title>Bootstrap Example</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body background="http://media.comicbook.com/2017/01/mobile-suit-gundam-226811-1280x0.png">
+<body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -41,21 +41,20 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-  let status = localStorage.getItem('status')
-
-  if(status==='connected'){
-    location.replace('./') //ke halaman search
-  }
+  // let status = localStorage.getItem('status')
+  //
+  // if(status==='connected'){
+  //   location.replace('./') //ke halaman search
+  // }
 </script>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '519117268484702',
+      appId      : '221341981973041',
       cookie     : true,
       xfbml      : true,
       version    : 'v3.0'
     });
-    FB.AppEvents.logPageView();
   };
 
   (function(d, s, id){
@@ -70,14 +69,15 @@
      FB.getLoginStatus(function(response) {
        if(response.status === 'connected'){
          FB.api('/me',{fields: ['name','email']},function(response){
-           axios.post('https://localhost:3000', {
+           axios.post('http://localhost:3000', {
               name: response.name,
               email: response.email
             })
             .then(function (response) {
+              console.log(response)
               localStorage.setItem('status','connected');
-              localStorage.setItem('token',response.data.token);
-              location.reload()
+              localStorage.setItem('token',response.data.data);
+              // location.reload()
             })
             .catch(function (error) {
               console.log(error);
@@ -87,16 +87,6 @@
      });
    }
 
-</script>
-<script>
-
-axios.get('https://yesno.wtf/api')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
 
 
 </script>
