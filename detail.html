@@ -13,6 +13,12 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .heart {
+      font-size: 25px;
+      color: red;
+    }
+  </style>
 </head>
 
 <body>
@@ -67,6 +73,7 @@
 
       </div>
       <div class="row">
+        <button class="favorite glyphicon glyphicon-star btn btn-primary btn-lg active">Favorite</button>
         <div class="synopsis well">
           <h2>Overview</h2>
           <p id="sinopsis"></p>
@@ -86,7 +93,6 @@
               <ol class="cast"></ol>
             </div>
         </div>
-        <button class="favorite">Favorite</button>
       </div>
     </div>
   </div>
@@ -95,9 +101,7 @@
   <script>
     const title_anime = localStorage.getItem('name')
     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=46a6751a46d3f387669deeac233870aa&query=${title_anime}`)
-    // axios.get(`https://api.themoviedb.org/3/search/movie?api_key=46a6751a46d3f387669deeac233870aa&query=${}`)
       .then(function (response) {
-        console.log('response :', response);
         let idMovie = response.data.results[0].id
         axios.get(`https://api.themoviedb.org/3/movie/${idMovie}?api_key=46a6751a46d3f387669deeac233870aa&append_to_response=videos`)
           .then(function (response) {
@@ -121,7 +125,17 @@
               token,
               title_anime
             }
-            axios.post('http://localhost:3000/animelist', requestToServer)
+            $('.favorite').click(() => {
+              alert("are your sure?");
+              axios.post('http://localhost:3000/animelist', requestToServer)
+                .then(response => {
+                  console.log('response :', response);
+                  $(".heart.fa").click(function () {
+                    $(this).toggleClass("fa-heart fa-heart-o");
+                  });
+                  // location.reload();
+                })
+            })
             return response
           })
           .then(response => {
