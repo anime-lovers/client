@@ -1,10 +1,108 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Detail</title>
-  </head>
-  <body>
 
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Detail | Anime Qu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .heart {
+      font-size: 25px;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1 id="title"></h1>
+    </div>
+    <div class="panel-body">
+      <div class="row modal-body well">
+        <div class="col-xs-6 col-lg-4">
+          <img src="" id="thumbnail-movie" class="img-thumbnail img-responsive" alt="">
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-8">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tr>
+                <th>Original Title</th>
+                <td class="original_title"></td>
+              </tr>
+              <tr>
+                <th>Tagline</th>
+                <td class="tagline"></td>
+              </tr>
+              <tr>
+                <th>Release Date</th>
+                <td class="release"></td>
+              </tr>
+              <tr>
+                <th>Genre</th>
+                <td class="genre"></td>
+              </tr>
+              <tr>
+                <th>Director</th>
+                <td class="director"></td>
+              </tr>
+              <tr>
+                <th>Content Rating</th>
+                <td class="content_rating"></td>
+              </tr>
+              <tr>
+                <th>Duration</th>
+                <td>
+                  <span class="duration"></span> Menit</td>
+              </tr>
+              <tr>
+                <th>Score</th>
+                <td class="score"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <button onclick="goBack()" class="btn btn-primary btn-l">Go Back</button>
+        <button class="favorite glyphicon glyphicon-star btn btn-warning btn-l">Favorite</button>
+        <div class="synopsis well">
+          <h2>Overview</h2>
+          <p id="sinopsis"></p>
+        </div>
+        <div class="trailer well">
+          <h2>Trailer</h2>
+          <iframe width="854" height="480" src="" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div class="stars well">
+          <h2>Stars</h2>
+          <ol class="star">
+          </ol>
+        </div>
+        <div class="casts well">
+          <h2>Cast</h1>
+            <div class="cast_detail">
+              <ol class="cast"></ol>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/lib/detail.js"></script>
+  <script>
+
+  </script>
+</body>
+
 </html>
