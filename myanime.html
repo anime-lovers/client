@@ -8,46 +8,42 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
-  <style media="screen">
-    .container {
-      display: flex;
-      height: 100vh;
-      justify-content: center;
-    }
-    .container .content {
-      align-self: center;
-    }
-    .container .title {
-      padding-bottom: 20px;
-      font-family: 'Skranji', cursive;
-    }
+  <style>
+		.navbar-brand {
+			color: white !important;
+		}
+		.nav-item .nav-link a {
+			color: white !important;
+		}
   </style>
 </head>
-
 <body>
-  <section>
-    <div class="container">
-      <div class="content">
-        <div class="title text-center">
-          <h3>Anime Qu</h3>
-          <h4>We have so many anime for you to choose!</h4>
-        </div>
-        <div class="text-center">
-          <a href="#">
-            <fb:login-button class="fb_button" length="long" size="large" scope="public_profile,email" onlogin="checkLoginState();">
-              <span style="margin-right: 10px;">Login Via Facebook</span> </fb:login-button>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <header>
+		<nav class="navbar navbar-light bg-dark">
+	    <div class="navbar-brand">Anime Qu</div>
+			<div class="nav-item form-inline">
+				<div class="nav-link"><a href="home.html">Search Anime</a></div>
+				<div class="nav-link" onclick="signout()"><a href="#">Sign Out</a></div>
+			</div>
+	  </nav>
+	</header>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-  <script src="lib/loginhome.js" charset="utf-8"></script>
-  <script src="lib/index.js" charset="utf-8"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="lib/login.js" charset="utf-8"></script>
+  <script src="lib/signout.js" charset="utf-8"></script>
+  <script>
+    axios.post('xxx', {}, {
+      headers: {token: localStorage.getItem('token')}
+    })
+      .then(response => {
+
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  </script>
 </body>
 
 </html>
